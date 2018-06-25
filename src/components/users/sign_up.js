@@ -7,7 +7,7 @@ class UserSignUp extends Component {
     return (
       <div className="container">
         <Row className="parent-element">
-          <div className="col-sm-12 col-md-6 col-lg-6 col-centered child-element">
+          <div className="col-sm-12 col-md-6 col-lg-6 col-centered child-element col-design">
             <Form>
               <FormGroup>
                 <Label for="user_email">Email</Label>
