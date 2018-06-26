@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import UserSignUp from '../../components/users/sign_up';
+import Routes from './routes';
+import { BrowserRouter } from 'react-router-dom';
 import '../../assets/style.css';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <UserSignUp />
-      </div>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     );
   }
 }
