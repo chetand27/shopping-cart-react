@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Row } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Row, Alert } from 'reactstrap';
 import { fetchApi } from '../../components/utils/fetchApi';
 
 class UserSignUp extends Component {
 	constructor() {
     super();
 
-    this.state = { email: '', password: ''};
+    this.state = { 
+      email: '',
+      password: '',
+      visible: true
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+  
+  onDismiss() {
+    this.setState({ visible: false });
   }
 
   handleSubmit(event) {
@@ -18,7 +27,12 @@ class UserSignUp extends Component {
       }
     };
      
-    fetchApi('/api/v1/users/sign_up', { method: 'POST', body }).then(user => { console.log(user) }	);
+    fetchApi('/api/v1/users/sign_up', { method: 'POST', body }).then(user => {
+      this.setState({ 
+        errors: user.errors ? user.errors : [],
+        visible: user.errors ? true : false
+      });
+    });
     event.preventDefault();
   }
 
@@ -27,6 +41,22 @@ class UserSignUp extends Component {
       <div className="container">
         <Row className="parent-element">
           <div className="col-sm-12 col-md-6 col-lg-6 col-centered child-element col-design">
+            {
+             this.state.errors ? 
+              <Alert color="danger" isOpen={this.state.visible} toggle={this.onDismiss}>
+                { 
+                  this.state.errors.map((obj, index) => {
+                      return (
+                        <div key={index}>
+                          <p>{obj}</p>
+                        </div>
+                      );
+                   })
+                 }
+              </Alert>
+             :
+              ''
+            }            
             <Form onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Label for="user_email">Email</Label>

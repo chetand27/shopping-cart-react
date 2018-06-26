@@ -13,3 +13,7 @@ body {
   background: #eee;
   padding: 20px;
 }
+
+.alert div p {
+  margin-bottom: 0rem; 
+}
