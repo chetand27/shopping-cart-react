@@ -1,11 +1,3 @@
-import FetchError from './FetchError';
-
-export const delay = (t, v) => new Promise(r => setTimeout(r, t, v));
-
-const delayError = t => delay(t).then(() => {
-	throw new FetchError('Timeout');
-});
-
 export const fetchHeaders = (endpoint, { body, headers, ...rest } = {}) => fetch(`http://localhost:3000${endpoint}`, {
 	headers: {
 		// Authorization: `Bearer ${localStorage.dominodeToken || ''}`,
