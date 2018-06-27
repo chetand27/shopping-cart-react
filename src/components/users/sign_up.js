@@ -10,6 +10,8 @@ class UserSignUp extends Component {
     this.state = { 
       email: '',
       password: '',
+      first_name: '',
+      last_name: '',
       visible: true,
       redirect: false,
       user_id: null
@@ -27,7 +29,9 @@ class UserSignUp extends Component {
     const body = {
       user: {
           email: this.state.email,
-          password: this.state.password
+          password: this.state.password,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name
       }
     };
      
@@ -71,6 +75,14 @@ class UserSignUp extends Component {
                 <FormGroup>
                   <Label for="user_password">Password</Label>
                   <Input type="password" name="user[password]" id="user_password" placeholder="Enter Password" value={this.state.password} onChange={ e => this.setState({password: e.target.value})} />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="user_first_name">First Name</Label>
+                  <Input type="input" name="user[first_name]" id="user_first_name" placeholder="Enter First Name" value={this.state.first_name} onChange={ e => this.setState({first_name: e.target.value})} />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="user_last_name">Last Name</Label>
+                  <Input type="input" name="user[last_name]" id="user_last_name" placeholder="Enter Last Name" value={this.state.last_name} onChange={ e => this.setState({last_name: e.target.value})} />
                 </FormGroup>
                 { this.state.redirect ? <Redirect to={`/users/${this.state.user_id}/confirmation`} /> : ''}
                 <Button>Sign Up</Button>
