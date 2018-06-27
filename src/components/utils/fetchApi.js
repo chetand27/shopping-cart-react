@@ -1,7 +1,7 @@
 export const fetchHeaders = (endpoint, { body, headers, ...rest } = {}) => fetch(`http://localhost:3000${endpoint}`, {
 	headers: {
 		// Authorization: `Bearer ${localStorage.dominodeToken || ''}`,
-		Accept: 'application/json',
+		// Accept: 'application/json',
 		...(body ? { 'Content-Type': 'application/json' } : undefined),
 		...headers,
 	},
